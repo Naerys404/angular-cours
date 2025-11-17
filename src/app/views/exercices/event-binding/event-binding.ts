@@ -8,9 +8,9 @@ import { FormsModule } from "@angular/forms";
   styleUrl: './event-binding.css',
 })
 export class EventBinding {
-  friendList:string[] = [];
+  protected friendList:string[] = [];
 
-  friendName = ''; 
+  protected friendName = ''; 
 
   protected addFriend(){
     this.friendList.push(this.friendName);
