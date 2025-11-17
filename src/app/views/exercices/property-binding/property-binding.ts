@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Person } from '../../../person';
 
 @Component({
   selector: 'app-property-binding',
@@ -7,11 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './property-binding.css',
 })
 
-
-
 export class PropertyBinding {
    
-persons = [
+persons:Person[] = [
   { 
     name: 'Steven Seagal',
     status:false,
