@@ -17,12 +17,14 @@ persons:Person[] = [
     age : 25,
     bio:'Acteur',
     reputation: false,
+    image : "https://placehold.co/600x400"
   },
   { name: 'Henri Cavill',
     status:false,
     age : 42,
     bio:'Acteur',
     reputation: true,
+    image : "https://placehold.co/600x400"
   }
 
 ]

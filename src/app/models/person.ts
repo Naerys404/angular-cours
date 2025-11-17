@@ -4,4 +4,5 @@ export interface Person {
     age : number,
     bio:string,
     reputation: boolean,
+    image:string
 }
