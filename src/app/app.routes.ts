@@ -27,6 +27,19 @@ export const routes: Routes = [
         ]
     },
     {
+        path: 'exercices',
+        children: [
+            {
+                path: '',
+                loadComponent:()=> import('./views/exercices/exercices').then(m=>m.Exercices)
+            },
+            {
+                path: 'property-bindings',
+                loadComponent:()=> import('./views/exercices/property-binding/property-binding').then(m=>m.PropertyBinding)
+            }
+        ]
+    },
+    {
         path: '**',
         loadComponent:()=> import('./views/not-found/not-found').then(m=>m.NotFound)
     },
