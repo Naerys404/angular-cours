@@ -23,6 +23,10 @@ export const routes: Routes = [
             {
                 path: 'property-bindings',
                 loadComponent:()=> import('./views/lessons/property-binding/property-binding').then(m=>m.PropertyBinding)
+            },
+            {
+                path: 'event-binding',
+                loadComponent:()=> import('./views/lessons/event-binding/event-binding').then(m=>m.EventBinding)
             }
         ]
     },
@@ -36,6 +40,10 @@ export const routes: Routes = [
             {
                 path: 'property-bindings',
                 loadComponent:()=> import('./views/exercices/property-binding/property-binding').then(m=>m.PropertyBinding)
+            },
+            {
+                path: 'event-bindings',
+                loadComponent:()=> import('./views/exercices/event-binding/event-binding').then(m=>m.EventBinding)
             }
         ]
     },
