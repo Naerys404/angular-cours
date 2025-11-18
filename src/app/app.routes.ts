@@ -5,6 +5,10 @@ export const routes: Routes = [
         path: 'home',
         loadComponent:()=> import('./views/home/home').then(m=>m.Home)
     },
+    {   path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
+    },
     {
         path: 'about',
         loadComponent:()=> import('./views/about/about').then(m=>m.About)

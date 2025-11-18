@@ -10,10 +10,17 @@ import { FormsModule } from "@angular/forms";
 export class EventBinding {
   protected friendList:string[] = [];
 
-  protected friendName = ''; 
+  protected friendName = 'Kira'; 
 
-  protected addFriend(){
-    this.friendList.push(this.friendName);
+  listFriendsCreationStatus:string="🥶 Aucun ami ..."
+
+  onAddingFriends():void{
+    this.listFriendsCreationStatus="🥳 Votre ami a été ajouté !"
+  }
+
+  protected addFriend(friendName: string): void{
+    this.listFriendsCreationStatus=`🥳 Votre ami a été ajouté ! ( ${this.friendName} )`;
+    this.friendList.push(friendName);
     this.friendName = '';
   }
 
