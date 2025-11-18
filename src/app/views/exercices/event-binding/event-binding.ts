@@ -11,15 +11,15 @@ import { FormsModule } from "@angular/forms";
 export class EventBinding {
 
   color:string = '';
+  aFriendStatus = ''
 
   constructor(){
-      let aFriendStatus;
       if(Math.random() > 0.5) {
-        aFriendStatus = "ON";
+        this.aFriendStatus = "ON";
       } else {
-        aFriendStatus = "OFF";
+        this.aFriendStatus = "OFF";
       }
-      this.color = this.getColor(aFriendStatus);
+      this.color = this.getColor(this.aFriendStatus);
   }
   
 
