@@ -5,11 +5,19 @@
         <label for="friendName" [aria-label]="friendName">Nom de l'ami</label>
         <input type="text" class='input w-2/3' name="friendName" [(ngModel)]='friendName'
             placeholder="Entrer le nom d'un ami">
-            <!-- <h3 class="text-2xl font-bold p-5">{{friendName}}</h3> -->
-        @for(friend of friendList; track friend){
+        <!-- <h3 class="text-2xl font-bold p-5">{{friendName}}</h3> -->
+        @if(listFriendCreated){
+        <div class="bg-base-300 p-2 m-2 rounded-2xl min-w-50 text-center">
+            @for(friend of friendList; track friend){
             <p class="py-2 text-primary font-bold">{{friend}}</p>
+            }
+        </div>
+        <p>{{listFriendsCreationStatus}} Un ami a été créé, il s'agit de {{friendList[0]}}</p>
+        } @else {
+            <p class="py-2">Ne restez pas seul, rajoutez un ami !</p>
         }
-        <p class="my-5">{{ listFriendsCreationStatus }}</p>
-        <button class="btn btn-secondary w-1/3 mt-5" [disabled]="friendName.length === 0" type="button" (click)="addFriend(friendName)"> + Ajouter un ami</button>
+
+        <button class="btn btn-secondary w-1/3 mt-5" [disabled]="friendName.length === 0" type="button"
+            (click)="addFriend(friendName)" (click)="updateListFriendCreated()"> + Ajouter un ami</button>
     </div>
 </section>
