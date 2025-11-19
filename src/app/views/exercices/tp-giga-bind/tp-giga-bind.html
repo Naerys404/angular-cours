@@ -1,0 +1,9 @@
+<section>
+    <h1 class="text-4xl font-bold my-5">TP Directives</h1>
+    <button type="button" class="btn btn-primary" (click)="toggleP()">{{buttonAction}}</button>
+    <p (ngStyle)="{'display : none':collapsed === true, 'display:block':collapsed === false }">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt sit fugit quisquam repellendus a voluptas ullam tempore fuga iusto et necessitatibus accusamus, deleniti aut similique earum reprehenderit doloribus quae? Sit.</p>
+    {{collapsed}}
+    @for(count of arrayCount; track $index){
+        <p>{{count}}</p>
+    }
+</section>

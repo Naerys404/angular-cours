@@ -1,0 +1,13 @@
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-xs-12">
+          <h1 class="text-center">TP-1 : Binding System</h1>
+          <label>Nom de l'utilisateur</label>
+          <input type="text" class="form-control"[(ngModel)]="userName">
+          <p>{{userName}}</p>
+          <button [disabled]="!userName" class="btn btn-primary" (click)="resetUsername()">Reset input</button>
+          <!-- <button [disabled]="userName==''? true:false" class="btn btn-primary" (click)="resetUsername()">Reset input</button> -->
+          <!-- <button  class="btn btn-primary" (click)="resetUsername()">Reset input</button> -->
+      </div>
+  </div>
+</div>

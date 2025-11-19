@@ -34,6 +34,7 @@ export class EventBinding {
   protected addFriend(friendName: string): void{
     this.listFriendsCreationStatus=`🥳 Votre ami a été ajouté ! ( ${this.friendName} )`;
     this.friendList.unshift(friendName);
+    this.friendName = '';
   }
 
   protected updateListFriendCreated():void {

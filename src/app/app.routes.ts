@@ -31,7 +31,23 @@ export const routes: Routes = [
             {
                 path: 'event-binding',
                 loadComponent:()=> import('./views/lessons/event-binding/event-binding').then(m=>m.EventBinding)
-            }
+            },
+            {
+                path: 'child',
+                loadComponent:()=> import('./views/lessons/child.component/child.component').then(m=>m.ChildComponent)
+            },
+            {
+                path: 'parent',
+                loadComponent:()=> import('./views/lessons/parent.component/parent.component').then(m=>m.ParentComponent)
+            },
+            {
+                path: 'observables',
+                loadComponent:()=> import('./views/lessons/observables/observables').then(m=>m.Observables)
+            },
+            {
+                path: 'signals',
+                loadComponent:()=> import('./views/lessons/signals/signals').then(m=>m.Signals)
+            },
         ]
     },
     {
@@ -48,7 +64,16 @@ export const routes: Routes = [
             {
                 path: 'event-bindings',
                 loadComponent:()=> import('./views/exercices/event-binding/event-binding').then(m=>m.EventBinding)
-            }
+            },
+            {
+                path: 'tp-giga-bind',
+                loadComponent:()=> import('./views/exercices/tp-giga-bind/tp-giga-bind').then(m=>m.TpGigaBind)
+            },
+            {
+                path: 'meteo',
+                loadComponent:()=> import('./views/exercices/meteo/meteo').then(m=>m.Meteo)
+            },
+
         ]
     },
     {
