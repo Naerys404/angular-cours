@@ -73,6 +73,18 @@ export const routes: Routes = [
                 path: 'meteo',
                 loadComponent:()=> import('./views/exercices/meteo/meteo').then(m=>m.Meteo)
             },
+            {
+                path: 'communication',
+                loadComponent:()=> import('./views/exercices/communication-component/communication-component').then(m=>m.CommunicationComponent)
+            },
+            {
+                path: 'activeUser',
+                loadComponent:()=> import('./views/exercices/active-user-component/active-user-component').then(m=>m.ActiveUserComponent)
+            },
+            {
+                path: 'userData',
+                loadComponent:()=> import('./views/exercices/user-data-component/user-data-component').then(m=>m.UserDataComponent)
+            },
 
         ]
     },
