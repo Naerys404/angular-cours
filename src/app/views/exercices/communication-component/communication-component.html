@@ -2,10 +2,10 @@
   <div class="container mx-auto p-4 justify-center flex flex-col">
     <h1 class="text-3xl text-primary font-bold my-5">TP Component Communication</h1>
     <div class="flex flex-wrap bg-accent rounded-2xl p-5 my-10 mx-auto">
-      <app-active-user-component [name]="name" [age]="age"></app-active-user-component>
+      <app-active-user-component [name]="utilisateur.name" [age]="utilisateur.age"></app-active-user-component>
     </div>
     <div class="flex flex-wrap bg-base-100 rounded-2xl p-5 my-10 mx-auto">
-      <app-user-data-component (submit)="updateUser(age,name)"></app-user-data-component>
+      <app-user-data-component (submit)="updateUser(utilisateur.age, utilisateur.name)"></app-user-data-component>
     </div>
   </div>
 </section>

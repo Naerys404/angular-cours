@@ -2,10 +2,10 @@
   <legend class="fieldset-legend">Composant formulaire d'édition</legend>
 
   <label class="label">Nom</label>
-  <input type="text" class="input" placeholder="Entrez votre nom" v-model="nom"/>
+  <input type="text" class="input" placeholder="Entrez votre nom" [(ngModel)]="name"/>
 
   <label class="label">Age</label>
-  <input type="number" class="input" placeholder="Entrez votre âge" v-model="age"/>
+  <input type="number" class="input" placeholder="Entrez votre âge" [(ngModel)]="age"/>
 
   <button type="button" class="btn btn-secondary mt-5" (click)="submit()">Mettre à jour</button>
 

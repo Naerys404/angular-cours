@@ -11,9 +11,6 @@ import { PersonSimplified } from '../../../models/personSimplified';
 })
 export class CommunicationComponent {
 
-  @Input() age : number  = 0;
-  @Input() name :string = '';
-
   utilisateur = {
     name: 'Jinx',
     age: 21,
