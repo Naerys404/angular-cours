@@ -14,6 +14,10 @@ export const routes: Routes = [
         loadComponent:()=> import('./views/about/about').then(m=>m.About)
     },
     {
+        path: 'register',
+        loadComponent:()=> import('./views/auth/register/register').then(m=>m.Register)
+    },
+    {
         path: 'lessons',
         children: [
             {
