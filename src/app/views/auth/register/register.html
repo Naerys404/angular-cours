@@ -33,17 +33,20 @@
         S'inscrire
       </button>
 
-      <div *ngIf="user" class="mt-4">
-        <div class="alert alert-success shadow-lg">
-          <span>Utilisateur inscrit : {{ user.email }}</span>
-        </div>
-      </div>
-
-      <div *ngIf="error" class="mt-4">
-        <div class="alert alert-error shadow-lg">
-          <span>{{ error }}</span>
-        </div>
-      </div>
+      @if (user) {
+          <div class="mt-4">
+            <div class="alert alert-success shadow-lg">
+              <span>Utilisateur inscrit : {{ user.email }}</span>
+            </div>
+          </div>
+      }
+      @if (error) {
+          <div class="mt-4">
+            <div class="alert alert-error shadow-lg">
+              <span>{{ error }}</span>
+            </div>
+          </div>
+      }
     </div>
   </div>
 </div>

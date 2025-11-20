@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { AuthGuard } from './services/auth-guard.service';
 
 export const routes: Routes = [
     {
@@ -16,6 +17,20 @@ export const routes: Routes = [
     {
         path: 'register',
         loadComponent:()=> import('./views/auth/register/register').then(m=>m.Register)
+    },
+    {
+        path: 'login',
+        loadComponent:()=> import('./views/auth/login/login').then(m=>m.Login)
+    },
+    {
+        path: 'dashboard',
+        canActivate: [AuthGuard],
+        loadComponent:()=> import('./views/auth/dashboard/dashboard').then(m=>m.Dashboard)
+    },
+    {
+        path: 'task-list',
+        canActivate: [AuthGuard],
+        loadComponent:()=> import('./views/task-list-firebase/task-list-firebase').then(m=>m.TaskListFirebase)
     },
     {
         path: 'lessons',
