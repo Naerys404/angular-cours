@@ -9,13 +9,14 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './user-data-component.css',
 })
 export class UserDataComponent {
-name : PersonSimplified['name'] = '';
-age : PersonSimplified['age'] = 0;
+
+@Input() name : PersonSimplified['name'] = '';
+@Input() age : PersonSimplified['age'] = 0;
 
 @Output() submitData = new EventEmitter<PersonSimplified>();
 
 submit() {
-  this.submitData.emit({name: this.name, age: this.age});
+  this.submitData.emit({age: this.age, name: this.name});
 }
 
 }

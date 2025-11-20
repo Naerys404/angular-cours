@@ -11,14 +11,18 @@ import { PersonSimplified } from '../../../models/personSimplified';
 })
 export class CommunicationComponent {
 
+  @Input() age : PersonSimplified['age']= 0;
+  @Input() name : PersonSimplified['name'] = '';
+
   utilisateur = {
     name: 'Jinx',
     age: 21,
   };
  
-  updateUser = (age : PersonSimplified['age'], name: PersonSimplified['name']) =>{
-    let newName =  name;
-    let newAge = age;
+  updateUser = (person: PersonSimplified) =>{
+    console.log("parent:" , person);
+    let newName =  person.name;
+    let newAge = person.age;
    
     this.utilisateur.name = newName
     this.utilisateur.age = newAge

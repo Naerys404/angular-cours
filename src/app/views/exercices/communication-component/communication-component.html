@@ -5,7 +5,7 @@
       <app-active-user-component [name]="utilisateur.name" [age]="utilisateur.age"></app-active-user-component>
     </div>
     <div class="flex flex-wrap bg-base-100 rounded-2xl p-5 my-10 mx-auto">
-      <app-user-data-component (submit)="updateUser(utilisateur.age, utilisateur.name)"></app-user-data-component>
+      <app-user-data-component (submitData)="updateUser($event)"></app-user-data-component>
     </div>
   </div>
 </section>
