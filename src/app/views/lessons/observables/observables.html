@@ -3,7 +3,6 @@
     Introduction aux Observables
   </h1>
 
-  <!-- Explication des Observables -->
   <div class="alert alert-info shadow-lg">
     <div>
       <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
@@ -27,7 +26,6 @@
     </div>
   </div>
 
-  <!-- Explication de RxJS -->
   <div class="alert alert-secondary shadow-lg">
     <div>
       <h4 class="font-bold text-lg">Qu'est-ce que RxJS ?</h4>
@@ -43,7 +41,68 @@
     </div>
   </div>
 
-  <!-- Exemple pratique -->
+  ---
+
+  <div class="card bg-base-100 shadow-xl">
+    <div class="card-body">
+      <h3 class="card-title text-accent">Cycle de Vie : `subscribe()` et `unsubscribe()`</h3>
+      <p>
+        Un Observable est "froid" : il ne commence à émettre des valeurs qu'à partir du moment où quelqu'un s'y **abonne**.
+      </p>
+
+      <ul class="list-disc list-inside mt-4 space-y-2">
+        <li>
+          <h5 class="font-bold">`subscribe(observer)`</h5>
+          <p class="ml-4">C'est la méthode qui **active** l'Observable et le lie à un **Observer**. L'Observer est l'objet qui contient les méthodes de gestion des valeurs (<code>next</code>, <code>error</code>, <code>complete</code>).</p>
+        </li>
+        <li>
+          <h5 class="font-bold">`unsubscribe()`</h5>
+          <p class="ml-4">Méthode essentielle appelée sur l'objet retourné par <code>subscribe()</code>. Elle **arrête** l'écoute des valeurs et libère les ressources.
+
+[Image of Observable lifecycle]
+
+          </p>
+        </li>
+      </ul>
+
+      <div class="alert alert-warning mt-4">
+        <div>
+          <strong>Règle d'or :</strong> Pour les Observables qui n'achèvent pas leur cycle naturellement (comme <code>interval</code> ou les événements), vous devez toujours appeler <code>.unsubscribe()</code> dans le <code>ngOnDestroy()</code> du composant pour éviter les **fuites de mémoire**.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  ---
+
+  <div class="card bg-base-100 shadow-xl">
+    <div class="card-body">
+      <h3 class="card-title text-success">Méthodes clés de l'Observer</h3>
+      <p>
+        L'objet passé à <code>subscribe()</code> (l'Observer) définit la façon dont le flux est géré :
+      </p>
+      <ul class="list-disc list-inside mt-4 space-y-2">
+        <li>
+          <h5 class="font-bold text-success">`.next(value)`</h5>
+          <p class="ml-4">C'est la fonction la plus utilisée. Elle est appelée à chaque fois que la source **émet une nouvelle valeur** vers ses abonnés.</p>
+        </li>
+        <li>
+          <h5 class="font-bold text-error">`.error(err)`</h5>
+          <p class="ml-4">Appelée si une erreur survient dans le flux. Une fois l'erreur émise, l'Observable **s'arrête** et n'émettra plus de valeurs.</p>
+        </li>
+        <li>
+          <h5 class="font-bold text-info">`.complete()`</h5>
+          <p class="ml-4">Appelée lorsque l'Observable a terminé son travail et n'émettra plus de valeurs. Une fois `complete` appelé, l'Observable **s'arrête**.</p>
+        </li>
+      </ul>
+
+      <h3 class="card-title text-primary mt-6">Opérateur de Création : `interval()`</h3>
+      <p class="mt-2">
+        L'opérateur statique <strong><code>interval(millis)</code></strong> est un *opérateur de création* de RxJS. Il crée un Observable qui émet des nombres entiers successifs (0, 1, 2, ...) à intervalles réguliers définis en millisecondes. C'est idéal pour simuler un compteur ou une mise à jour en temps réel.
+      </p>
+    </div>
+  </div>
+
   <div class="card bg-base-100 shadow-xl">
     <div class="card-body">
       <h3 class="card-title text-primary">Exemple pratique avec un compteur :</h3>
@@ -58,16 +117,6 @@
     </div>
   </div>
 
-  <!-- Explication sur le cycle de vie -->
-  <div class="alert alert-warning shadow-lg">
-    <div>
-      <strong>Important :</strong> Les observables doivent être correctement "désabonnés" pour éviter des fuites
-      de mémoire. Angular appelle automatiquement <code>ngOnDestroy</code> lors de la destruction du composant,
-      ce qui permet de faire <code>unsubscribe()</code>.
-    </div>
-  </div>
-
-  <!-- Cas pratiques -->
   <div class="alert alert-success shadow-lg">
     <div>
       <h4 class="font-bold text-lg">Exemples d'utilisation dans des cas réels :</h4>

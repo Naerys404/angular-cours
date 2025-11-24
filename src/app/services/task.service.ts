@@ -9,58 +9,41 @@ import { Observable } from 'rxjs';
 export class TaskService {
   private tasksRef: any;
 
-  constructor(private db: Database) {
+  constructor(public db: Database) {
     this.tasksRef = ref(this.db, 'tasks');
-    onValue(this.tasksRef, (snapshot) => {
-      // .val pour récuperer toutes les données de la base dans tasks
-      const data = snapshot.val();
-      // console.log(data);
-      // On récupère le méga objet tasks de la base mais on en fait un tableau d'objet de tasks
-      this.tasksRef = data ? Object.values(data) : [];
-    });
   }
-
+  
   getTasks(): Observable<Task[]> {
-    console.log('taskref service', this.tasksRef);
-    return this.tasksRef;
+    return new Observable((observer) => {
+      onValue(this.tasksRef, (snapshot) => {
+        const data = snapshot.val();
+        const tasks: Task[] = data ? Object.keys(data).map((id) => ({ id, ...data[id] })) : [];
+        observer.next(tasks);
+      });
+    });
   }
 
-  addTask(task: Task) {
-    if (task.title.trim()) {
-      // On vise les tasks dans notre BDD
-      const newTaskRef = push(this.tasksRef);
-      set(newTaskRef, task); // Enregistrer l'objet newTask
+  // Ajouter une tâche
+  async addTask(task: Task): Promise<void> {
+    const newTaskRef = push(this.tasksRef);
+    await set(newTaskRef, task); // Ajout de la tâche
+  }
+
+  // Mettre à jour une tâche
+  async updateTask(task: Task): Promise<void> {
+    if (!task.id) {
+      throw new Error('La tâche doit avoir un ID pour être mise à jour.');
     }
+    // Une ref pour viser dans la """table"""" des tasks, sur un ID particulier
+    const taskRef = ref(this.db, `tasks/${task.id}`);
+    await update(taskRef, task); // Mise à jour de la tâche
   }
 
-  deleteTask(task: Task) {
-    const tasksRef = ref(this.db, 'tasks');
-    onValue(tasksRef, (snapshot) => {
-      const data = snapshot.val();
-
-      for (const key in data) {
-        if(data[key] == task){
-          remove(data[key]);
-        }
-      }
-    });
-  }
-
-  changeStatus(task: Task) {
-    const tasksRef = ref(this.db, 'tasks');
-
-    onValue(tasksRef, (snapshot) => {
-      const data = snapshot.val();
-
-      for (const key in data) {
-        if (data[key] === task) {
-          if (data[key].status === 'pending') {
-            update(data[key].status, data[key]['complete']);
-          } else {
-            update(data[key].status, data[key]['pending']);
-          }
-        }
-      }
-    });
+  // Supprimer une tâche
+  async deleteTask(taskId: string): Promise<void> {
+    //! On pourra rajouter un if si on a pas d'iD (c'est grave)
+    const taskRef = ref(this.db, `tasks/${taskId}`);
+    await remove(taskRef); // Suppression de la tâche
   }
 }
+

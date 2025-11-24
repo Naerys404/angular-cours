@@ -29,7 +29,6 @@ export const routes: Routes = [
     },
     {
         path: 'task-list',
-        canActivate: [AuthGuard],
         loadComponent:()=> import('./views/task-list-firebase/task-list-firebase').then(m=>m.TaskListFirebase)
     },
     {
@@ -103,6 +102,10 @@ export const routes: Routes = [
             {
                 path: 'userData',
                 loadComponent:()=> import('./views/exercices/user-data-component/user-data-component').then(m=>m.UserDataComponent)
+            },
+            {
+                path: 'observable',
+                loadComponent:()=> import('./views/exercices/observable/observable').then(m=>m.Observable)
             },
 
         ]

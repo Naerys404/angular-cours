@@ -19,8 +19,8 @@ export class Observables {
   ngOnInit() {
     // Souscription à l'observable
     this.premiereSubscription = this.laSource.subscribe((count) => {
-      this.currentValue = count;
       console.log(count); // Affiche dans la console
+      this.currentValue = count;
     });
   }
 
