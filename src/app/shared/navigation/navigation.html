@@ -1,15 +1,15 @@
 <div class="navbar bg-base-100 shadow-sm">
   <div class="flex-1">
-    <a class="btn btn-ghost text-xl">daisyUI</a>
+    <a class="btn btn-ghost text-xl">Cours Angular</a>
   </div>
   <div class="flex-none">
     <ul class="menu menu-horizontal px-1">
       <li><a routerLink="lessons">Leçons</a></li>
       <li><a routerLink="exercices">Exercices</a></li>
-      <li><a routerLink="task-list">Tasks</a></li>
+      <li><a routerLink="/task-list">Tasks</a></li>
       @if (!auth.currentUser) {
-        <li><a routerLink="/register">Register</a></li>
-        <li><a routerLink="/login">Login</a></li>
+        <li><a routerLink="/register">Inscription</a></li>
+        <li><a routerLink="/login">Connexion</a></li>
       } @else {
         <li><a (click)="logOut()">Se déconnecter</a></li>
       }

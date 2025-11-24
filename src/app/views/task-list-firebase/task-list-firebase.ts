@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { Database, set, ref, push, onValue } from '@angular/fire/database';
+import { Component, inject} from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { TaskService } from '../../services/task.service';
+import { Task } from '../../models/task';
+
 
 @Component({
   selector: 'app-task-list-firebase',
@@ -8,9 +10,8 @@ import { FormsModule } from '@angular/forms';
   // templateUrl: './task-list-firebase.html',
   template: `
     <div class="container mt-5">
-
       <h2 class="text-xl font-bold mb-5">Liste des tâches</h2>
-      <form (ngSubmit)="addTask()" class="d-flex mb-3">
+      <form (ngSubmit)="addTask(newTask)" class="d-flex mb-3">
         <input
           [(ngModel)]="newTask.title"
           name="task"
@@ -21,60 +22,43 @@ import { FormsModule } from '@angular/forms';
         <button type="submit" class="btn btn-primary">Ajouter</button>
       </form>
 
-      <ul class="list w-1/2 bg-base-100 rounded-box shadow-md">
-        @for(task of tasks; track task.title){
-           <li class="list-row flex justify-between">
-            <span class="font-bold">{{ task.title }}</span> Status  :<span> {{task.status}}</span>
-            <button (click)="deleteTask(task.title)" type="button" class="btn btn-error">Supprimer</button>
-          </li>
+      <ul class="list w-full bg-base-100 rounded-box shadow-md">
+        @for(task of tasks(); track task.title){
+        <li class="list-row flex justify-between items-center">
+          <span class="font-bold">{{ task.title }}</span>
+          <button (click)="changeStatus(task)" type="button" class="btn btn-success">
+            Changer le status
+          </button>
+          <p class="badge">{{ task.status }}</p>
+          <button (click)="deleteTask(task)" type="button" class="btn btn-error">
+            Supprimer
+          </button>
+        </li>
         }
       </ul>
     </div>
-  ` ,
+  `,
 })
 export class TaskListFirebase {
-  tasks: { title: string; status: string }[] = []; // Liste des tâches
-  newTask = { title: '', status: 'pending' }; // Tâche à ajouter
+  
+  newTask:Task = { title: '', status: 'pending' }; // Tâche à ajouter
+ 
+  taskService = inject(TaskService);
 
-  constructor(private db:Database){
-    const tasksRef = ref(this.db, 'tasks');
-    // Récupération en temps réel des tâches ( snapshot : quel lorsqu'il y a un changement)
-    onValue(tasksRef, (snapshot) => {
-      // .val pour récuperer toutes les données de la base dans tasks
-      const data = snapshot.val();
-      console.log(data);
-      // console.log(data);
-      // On récupère le méga objet tasks de la base mais on en fait un tableau d'objet de tasks
-      this.tasks = data ? Object.values(data) : [];
-      console.log(this.tasks);
-    });
+  tasks = this.taskService.getTasks();
+  
+
+  constructor() {}
+
+  addTask(task:Task){
+    this.taskService.addTask(task)
+    this.newTask = { title: '', status: 'pending' }; // Réinitialiser le champ
   }
-
-
-  addTask() {
-    if (this.newTask.title.trim()) {
-      // On vise les tasks dans notre BDD
-      const tasksRef = ref(this.db, 'tasks');
-      const newTaskRef = push(tasksRef);
-      set(newTaskRef, this.newTask); // Enregistrer l'objet newTask
-      this.newTask = { title: '', status: 'pending' }; // Réinitialiser le champ
-    }
+  changeStatus(task:Task){
+    this.taskService.changeStatus(task);
   }
-
-  deleteTask(taskTitle:string){
-    const tasksRef = ref(this.db, 'tasks');
-
-    onValue(tasksRef, (snapshot)=> {
-      const data = snapshot.val();
-
-      for (const key in data) {
-        if (data[key].title === taskTitle){
-
-        }
-      }
-    })
-
-
+  deleteTask(task:Task){
+    this.taskService.deleteTask(task);
   }
-
+  
 }
