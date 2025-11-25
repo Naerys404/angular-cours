@@ -104,8 +104,8 @@ export const routes: Routes = [
                 loadComponent:()=> import('./views/exercices/user-data-component/user-data-component').then(m=>m.UserDataComponent)
             },
             {
-                path: 'observable',
-                loadComponent:()=> import('./views/exercices/observable/observable').then(m=>m.Observable)
+                path: 'observable-g',
+                loadComponent:()=> import('./views/exercices/observable/observable').then(m=>m.ObservableGenerator)
             },
 
         ]

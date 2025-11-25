@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Observable } from './observable';
+import { ObservableGenerator } from './observable';
 
 describe('Observable', () => {
-  let component: Observable;
-  let fixture: ComponentFixture<Observable>;
+  let component: ObservableGenerator;
+  let fixture: ComponentFixture<ObservableGenerator>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Observable]
+      imports: [ObservableGenerator]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Observable);
+    fixture = TestBed.createComponent(ObservableGenerator);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

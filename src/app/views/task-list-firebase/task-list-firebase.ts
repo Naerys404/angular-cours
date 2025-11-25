@@ -3,6 +3,7 @@ import { Task } from '../../models/task';
 import { TaskService } from '../../services/task.service';
 import { FormsModule } from '@angular/forms';
 import { NgClass} from '@angular/common';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-task-list-firebase',
@@ -72,11 +73,11 @@ export class TaskListFirebase {
 
   // Charger les tâches depuis Firebase
   async loadTasks() {
-    try {
+    try { 
       return this.taskService.getTasks();
+      
     } catch (error) {
       return Error('Erreur lors de la récupération des tâches')
-      console.error('Erreur lors de la récupération des tâches :', error);
     }
   }
 
