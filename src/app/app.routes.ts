@@ -66,6 +66,10 @@ export const routes: Routes = [
                 path: 'signals',
                 loadComponent:()=> import('./views/lessons/signals/signals').then(m=>m.Signals)
             },
+            {
+                path: 'pipes',
+                loadComponent:()=> import('./views/lessons/pipes/pipes').then(m=>m.Pipes)
+            },
         ]
     },
     {
@@ -105,7 +109,11 @@ export const routes: Routes = [
             },
             {
                 path: 'observable-g',
-                loadComponent:()=> import('./views/exercices/observable/observable').then(m=>m.ObservableGenerator)
+                loadComponent:()=> import('./views/exercices/observable/observable').then(m=>m.ObservablesAdvanced)
+            },
+            {
+                path: 'task-signal',
+                loadComponent:()=> import('./views/exercices/task-signal/task-signal').then(m=>m.TaskSignal)
             },
 
         ]

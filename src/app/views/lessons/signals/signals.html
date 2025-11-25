@@ -122,3 +122,62 @@ Property 'value' does not exist on type 'EventTarget'. -->
     </div>
   </div>
 </div>
+
+<h2 class="text-3xl font-bold text-secondary text-center pt-4">
+  Les 3 Piliers de la Réactivité (API Signals)
+</h2>
+
+<div class="grid md:grid-cols-3 gap-6">
+  <div class="card bg-success shadow-xl">
+    <div class="card-body p-5">
+      <h3 class="card-title">1. <code>signal(initialValue)</code></h3>
+      <p class="text-sm">
+        C'est le **créateur de l'état réactif**. Il initialise une valeur qui peut être modifiée.
+      </p>
+      <ul class="list-disc list-inside mt-2 text-sm space-y-1">
+        <li>**Lecture :** <code>count()</code></li>
+        <li>**Écriture (Remplacement) :** <code>.set(newValue)</code></li>
+        <li>**Écriture (Mise à jour) :** <code>.update(callback)</code></li>
+      </ul>
+      <pre class="bg-neutral text-neutral-content p-2 rounded-lg mt-3 text-xs">
+const count = signal(0);
+count.set(10);</pre>
+    </div>
+  </div>
+
+  <div class="card bg-primary-content shadow-xl">
+    <div class="card-body p-5">
+      <h3 class="card-title text-primary">2. <code>computed(calculationFn)</code></h3>
+      <p class="text-sm">
+        Crée une valeur en **lecture seule** qui dépend automatiquement d'autres Signals. C'est un état **dérivé**.
+      </p>
+      <ul class="list-disc list-inside mt-2 text-sm space-y-1">
+        <li>**Mise à jour automatique :** Recalcule uniquement si ses dépendances changent.</li>
+        <li>**Performance :** Sa valeur est **mise en cache** (*lazy evaluation*).</li>
+        <li>**Règle :** Non modifiable par `.set()` ou `.update()`.</li>
+      </ul>
+      <!-- <pre class="bg-neutral text-neutral-content p-2 rounded-lg mt-3 text-xs">
+const isEven = computed(() => {
+  return count() % 2 === 0;
+});</pre> -->
+    </div>
+  </div>
+
+  <div class="card bg-info shadow-xl">
+    <div class="card-body p-5">
+      <h3 class="card-title">3. <code>effect(reactionFn)</code></h3>
+      <p class="text-sm">
+        Déclenche une **action latérale** (hors rendu) chaque fois qu'un Signal lu à l'intérieur est modifié.
+      </p>
+      <ul class="list-disc list-inside mt-2 text-sm space-y-1">
+        <li>**Utilisation :** Journalisation (`console.log`), synchronisation avec le `localStorage`.</li>
+        <li>**Cadre :** S'exécute **en dehors** du cycle normal de détection de changement.</li>
+        <li>**Avertissement :** Ne doit pas modifier d'autres Signals.</li>
+      </ul>
+      <!-- <pre class="bg-neutral text-neutral-content p-2 rounded-lg mt-3 text-xs">
+effect(() => {
+  console.log('Le compte est à :', count());
+});</pre> -->
+    </div>
+  </div>
+</div>

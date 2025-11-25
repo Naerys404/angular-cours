@@ -33,7 +33,7 @@ export class Signals {
     // ! Les effets sont automatiquement déclenchés lorsqu'une ou plusieurs dépendances changent.
     // ! Objectif principal : Réagir aux modifications des données pour déclencher une action (ex. : mise à jour du DOM, appel d'API, logs).
     // ! Exemple d'usage : Synchroniser les données avec une API ou mettre à jour l'interface utilisateur.
-
+    // Un peu équivalent aux watchers vus en VUE
     effect(() => {
       const currentCount = this.count();
       this.updateHistory(currentCount); // Met à jour l'historique

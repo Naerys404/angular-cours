@@ -1,27 +1,50 @@
-<section class="flex flex-col">
-    <h1 class="text-3xl text-primary my-5 font-bold">Générateur Simplifié de nombres aléatoires</h1>
-    <div class="flex flex-wrap gap-5 my-5">
+<div class="p-6 mx-auto max-w-lg">
+  <h1 class="text-3xl font-bold text-center text-primary mb-6">
+    Générateur de Nombres Aléatoires
+  </h1>
+
+  <div class="card bg-base-100 shadow-xl p-6 mb-6">
+    <div class="card-body p-0">
+      <div class="flex justify-center space-x-4 mb-5">
         <button class="btn btn-success" (click)="start()">Démarrer</button>
-        <button class="btn btn-warning" (click)="pause()">{{paused ? 'Reprendre':'Pause'}}</button>
+        <button class="btn btn-warning" (click)="pauseResume()">
+          {{ paused ? 'Reprendre' : 'Pause' }}
+        </button>
         <button class="btn btn-error" (click)="stop()">Arrêter</button>
+      </div>
+
+      <div class="form-control flex justify-center mt-3">
+        <label for="filterSwitch" class="label cursor-pointer justify-center space-x-3">
+          <span class="label-text text-lg font-medium">Afficher uniquement les chiffres / nombres pairs</span>
+          <input
+            type="checkbox"
+            class="toggle toggle-primary"
+            id="filterSwitch"
+            [(ngModel)]="filterEven"
+          />
+        </label>
+      </div>
     </div>
-    <div class="mb-5">
-        <input type="checkbox" class="toggle" (click)="togglePairDisplay()" /> Afficher uniquement les pairs
+  </div>
+
+  <div class="card bg-base-100 shadow-xl">
+    <div class="card-body p-5">
+      <h2 class="card-title text-secondary text-xl mb-3">Historique des Nombres</h2>
+
+      <ul class="space-y-2">
+        <li
+          *ngFor="let number of numbers"
+          class="p-3 rounded-lg flex justify-between items-center text-lg font-mono"
+
+          [ngClass]="{
+            'bg-primary text-secondary-content shadow-md': number.value % 2 === 0,
+            'bg-error text-error-focus opacity-80': number.value % 2 !== 0
+          }"
+        >
+          <strong class="text-xl">{{ number.value }}</strong>
+          <span class="badge badge-lg bg-base-100">{{ number.label }}</span>
+        </li>
+      </ul>
     </div>
-    <div class="card bg-base-100 shadow-xl p-10">
-        <h2 class="text-2xl text-secondary font-bold mb-2">Nombres générés</h2>
-        <ul class="space-y-2">
-            @for(number of numbers; track $index){     
-                @if(number > 50){
-                    <li class="bg-red-400 rounded-lg py-2 flex justify-center text-lg font-bold text-white" >{{number}}</li>
-                    
-                } @else {
-                    <li class="bg-base-200 rounded-lg py-2 flex justify-center text-lg font-bold text-accent" >{{number}}</li>
-                }
-            }
-           @if(numbers.length === 0){
-            <li class="py-2">Pas de nombres générés.</li>
-           }
-        </ul>
-    </div>
-</section>
+  </div>
+</div>
